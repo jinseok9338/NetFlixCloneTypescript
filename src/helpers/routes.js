@@ -1,20 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-interface IsUserRedirectProps {
-  user: any;
-  loggedInPath: string;
-  children: React.ReactNode;
-  render: () => void;
-}
-
 export const IsUserRedirect = ({
   user,
   loggedInPath,
   children,
   render,
   ...rest
-}: IsUserRedirectProps) => {
+}) => {
   return (
     <Route
       {...rest}

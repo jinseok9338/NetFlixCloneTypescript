@@ -1,11 +1,13 @@
-export function seedDatabase(firebase) {
+import firebase from 'firebase';
+
+export function seedDatabase(firebase: firebase.app.App) {
   function getUUID() {
     // eslint gets funny about bitwise
     /* eslint-disable */
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-        const piece = (Math.random() * 16) | 0;
-        const elem = c === 'x' ? piece : (piece & 0x3) | 0x8;
-        return elem.toString(16);
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const piece = (Math.random() * 16) | 0;
+      const elem = c === 'x' ? piece : (piece & 0x3) | 0x8;
+      return elem.toString(16);
     });
     /* eslint-enable */
   }
@@ -16,7 +18,8 @@ export function seedDatabase(firebase) {
   firebase.firestore().collection('series').add({
     id: getUUID(),
     title: 'Tiger King',
-    description: 'An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters.',
+    description:
+      'An exploration of big cat breeding and its bizarre underworld, populated by eccentric characters.',
     genre: 'documentaries',
     maturity: '18',
     slug: 'tiger-king',
@@ -24,7 +27,8 @@ export function seedDatabase(firebase) {
   firebase.firestore().collection('series').add({
     id: getUUID(),
     title: 'Amanda Knox',
-    description: 'Amanda Marie Knox is an American woman who spent almost four years in an Italian prison.',
+    description:
+      'Amanda Marie Knox is an American woman who spent almost four years in an Italian prison.',
     genre: 'documentaries',
     maturity: '12',
     slug: 'amanda-knox',

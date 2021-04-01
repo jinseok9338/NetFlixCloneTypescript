@@ -122,7 +122,7 @@ Header.Profile = function HeaderProfile({ children, ...restProps }) {
   return <Profile {...restProps}>{children}</Profile>;
 };
 
-Header.Feature = function HeaderFeature({ children, ...restProps }) {
+Header.Feature = function HeaderFeature({ children }) {
   return <Feature>{children}</Feature>;
 };
 
