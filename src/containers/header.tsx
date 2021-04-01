@@ -3,7 +3,11 @@ import { Header } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
-export function HeaderContainer({ children }) {
+interface HeaderContainerProps {
+  children: any;
+}
+
+export function HeaderContainer({ children }: HeaderContainerProps) {
   return (
     <Header>
       <Header.Frame>

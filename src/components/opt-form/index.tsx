@@ -6,7 +6,7 @@ interface OptFormProps {
 }
 
 interface Proptypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   placeholder?: string;
 }
 interface OptFormType extends React.FC<OptFormProps> {

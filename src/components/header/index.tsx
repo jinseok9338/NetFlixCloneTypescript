@@ -20,19 +20,20 @@ import {
 } from './styles/header';
 
 interface HeaderProps {
-  children: React.ReactNode;
-  bg: boolean;
-  src: string;
-  dontShowOnSmallViewPort: boolean;
+  children?: React.ReactNode;
+  bg?: boolean;
+  src?: string;
+  dontShowOnSmallViewPort?: boolean;
 }
 
 interface PropTypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   to?: string;
   searchTerm?: string;
   setSearchTerm?: (search: string) => void;
   src?: string;
   active?: boolean;
+  alt?: string;
 }
 
 interface HeaderType extends React.FC<HeaderProps> {
@@ -62,10 +63,10 @@ const Header: HeaderType = ({
     <>
       bg ? (
       <Background
-        src={src}
-        dontShowOnSmallViewPort={dontShowOnSmallViewPort}
+        src={src!}
+        dontShowOnSmallViewPort={dontShowOnSmallViewPort!}
         data-testid="header-bg"
-        {...restProps}
+        {...restProps!}
       >
         {children}
       </Background>
@@ -84,7 +85,7 @@ Header.Group = function HeaderGroup({ children, ...restProps }) {
   return <Group {...restProps}>{children}</Group>;
 };
 
-Header.Logo = function HeaderLogo({ to, ...restProps }) {
+Header.Logo = function HeaderLogo({ to, alt, ...restProps }) {
   return (
     <ReachRouterLink to={to!}>
       <Logo {...restProps} />

@@ -6,8 +6,9 @@ interface ProfilesProps {
 }
 
 interface Proptypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   src?: string;
+  onClick?: () => void;
 }
 interface ProfilesType extends React.FC<ProfilesProps> {
   Title: React.FC<Proptypes>;

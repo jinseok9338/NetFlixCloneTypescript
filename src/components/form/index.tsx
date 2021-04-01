@@ -16,12 +16,26 @@ interface FormProps {
 }
 
 interface PropTypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  to?: string;
+  placeholder?: string;
+  onSubmit?: (event: {
+    preventDefault: () => void;
+  }) => Promise<void> | undefined;
+  value?: string;
+  method?: 'POST' | 'GET';
+  type?: 'submit';
+  disabled?: boolean;
 }
 
-interface LinkPorps {
-  children: React.ReactNode;
-  to: string;
+interface InputProps {
+  onChange?: (event: {
+    target: { value: React.SetStateAction<string> };
+  }) => void;
+  type?: 'password';
+  placeholder?: string;
+  value?: string;
+  autoComplete?: 'off';
 }
 
 interface FormType extends React.FC<FormProps> {
@@ -30,8 +44,8 @@ interface FormType extends React.FC<FormProps> {
   TextSmall: React.FC<PropTypes>;
   Title: React.FC<PropTypes>;
   Text: React.FC<PropTypes>;
-  Link: React.FC<LinkPorps>;
-  Input: React.FC<PropTypes>;
+  Link: React.FC<PropTypes>;
+  Input: React.FC<InputProps>;
   Submit: React.FC<PropTypes>;
 }
 
@@ -63,7 +77,7 @@ Form.TextSmall = function FormTextSmall({ children, ...restProps }) {
 
 Form.Link = function FormLink({ children, to, ...restProps }) {
   return (
-    <Link to={to} {...restProps}>
+    <Link to={to!} {...restProps}>
       {children}
     </Link>
   );
@@ -73,6 +87,10 @@ Form.Input = function FormInput({ children, ...restProps }) {
   return <Input {...restProps}>{children}</Input>;
 };
 
-Form.Submit = function FormSubmit({ children, ...restProps }) {
-  return <Submit {...restProps}>{children}</Submit>;
+Form.Submit = function FormSubmit({ children, onSubmit, type, ...restProps }) {
+  return (
+    <Submit onSubmit={onSubmit} type={'submit'} {...restProps}>
+      {children}
+    </Submit>
+  );
 };

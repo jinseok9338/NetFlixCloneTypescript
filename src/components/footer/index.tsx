@@ -10,11 +10,12 @@ import {
 } from './styles/footer';
 
 interface FooterProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 interface PropTypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  href?: string;
 }
 
 interface FooterType extends React.FC<FooterProps> {
