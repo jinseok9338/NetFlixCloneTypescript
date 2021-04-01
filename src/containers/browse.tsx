@@ -6,16 +6,43 @@ import logo from '../logo.svg';
 import { FirebaseContext } from '../context/firebase';
 import { SelectProfileContainer } from './profiles';
 import { FooterContainer } from './footer';
+import firebase from 'firebase';
+import { itemFeatureProps } from 'src/components/card';
 
-export function BrowseContainer({ slides }) {
-  const [category, setCategory] = useState('series');
-  const [profile, setProfile] = useState({});
+interface slideitemProps {
+  data: itemFeatureProps[];
+  title: string;
+}
+interface slideProps {
+  slides: {
+    series: {
+      title: string;
+      data:
+        | {
+            genre: string;
+          }[]
+        | undefined;
+    }[];
+    films: {
+      title: string;
+      data:
+        | {
+            genre: string;
+          }[]
+        | undefined;
+    }[];
+  };
+}
+
+export function BrowseContainer({ slides }: slideProps) {
+  const [category, setCategory] = useState('series' as string);
+  const [profile, setProfile] = useState({} as firebase.User);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [slideRows, setSlideRows] = useState([]);
+  const [slideRows, setSlideRows] = useState([] as slideitemProps[]);
 
-  const { firebase } = useContext(FirebaseContext);
-  const user = firebase.auth().currentUser || {};
+  const app = useContext(FirebaseContext);
+  const user = app!.auth().currentUser || ({} as firebase.User);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,6 +51,7 @@ export function BrowseContainer({ slides }) {
   }, [profile.displayName]);
 
   useEffect(() => {
+    //@ts-ignore
     setSlideRows(slides[category]);
   }, [slides, category]);
 
@@ -36,13 +64,14 @@ export function BrowseContainer({ slides }) {
     if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
       setSlideRows(results);
     } else {
+      //@ts-ignore
       setSlideRows(slides[category]);
     }
   }, [searchTerm]);
 
   return profile.displayName ? (
     <>
-      {loading ? <Loading src={user.photoURL} /> : <Loading.ReleaseBody />}
+      {loading ? <Loading src={user.photoURL!} /> : <Loading.ReleaseBody />}
 
       <Header src="joker1" dontShowOnSmallViewPort>
         <Header.Frame>
@@ -67,14 +96,14 @@ export function BrowseContainer({ slides }) {
               setSearchTerm={setSearchTerm}
             />
             <Header.Profile>
-              <Header.Picture src={user.photoURL} />
+              <Header.Picture src={user.photoURL!} />
               <Header.Dropdown>
                 <Header.Group>
-                  <Header.Picture src={user.photoURL} />
+                  <Header.Picture src={user.photoURL!} />
                   <Header.TextLink>{user.displayName}</Header.TextLink>
                 </Header.Group>
                 <Header.Group>
-                  <Header.TextLink onClick={() => firebase.auth().signOut()}>
+                  <Header.TextLink onClick={() => app!.auth().signOut()}>
                     Sign out
                   </Header.TextLink>
                 </Header.Group>
@@ -98,10 +127,10 @@ export function BrowseContainer({ slides }) {
 
       <Card.Group>
         {slideRows.map((slideItem) => (
-          <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
+          <Card key={`${category}-${slideItem!.title!.toLowerCase()}`}>
             <Card.Title>{slideItem.title}</Card.Title>
             <Card.Entities>
-              {slideItem.data.map((item) => (
+              {slideItem.data!.map((item) => (
                 <Card.Item key={item.docId} item={item}>
                   <Card.Image
                     src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}

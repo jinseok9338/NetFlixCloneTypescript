@@ -1,10 +1,35 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, {
+  useState,
+  useContext,
+  createContext,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import ReactDOM from 'react-dom';
 import { Container, Button, Overlay, Inner, Close } from './styles/player';
 
-export const PlayerContext = createContext();
+interface PlayerContextProps {
+  showPlayer: boolean;
+  setShowPlayer: Dispatch<SetStateAction<boolean>>;
+}
 
-export default function Player({ children, ...restProps }) {
+export const PlayerContext = createContext({} as PlayerContextProps);
+
+interface PlayerProps {
+  children?: React.ReactNode;
+}
+
+interface PropTypes {
+  children?: React.ReactNode;
+  src?: string;
+}
+
+interface PlayerType extends React.FC<PlayerProps> {
+  Video: React.FC<PropTypes>;
+  Button: React.FC<PropTypes>;
+}
+
+const Player: PlayerType = ({ children, ...restProps }) => {
   const [showPlayer, setShowPlayer] = useState(false);
 
   return (
@@ -12,7 +37,8 @@ export default function Player({ children, ...restProps }) {
       <Container {...restProps}>{children}</Container>
     </PlayerContext.Provider>
   );
-}
+};
+export default Player;
 
 Player.Video = function PlayerVideo({ src, ...restProps }) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
@@ -36,7 +62,10 @@ Player.Button = function PlayerButton({ ...restProps }) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
 
   return (
-    <Button onClick={() => setShowPlayer((showPlayer) => !showPlayer)} {...restProps}>
+    <Button
+      onClick={() => setShowPlayer((showPlayer) => !showPlayer)}
+      {...restProps}
+    >
       Play
     </Button>
   );

@@ -27,18 +27,22 @@ interface CardProps {
   children: React.ReactNode;
   category: string;
   item: {
+    children: Element[] | React.ReactNode;
     genre: string;
     slug: string;
     maturity: number;
     description: string;
     title: string;
+    key?: string;
   };
 }
 
 interface ChildrenProp {
-  children: React.ReactNode;
-  item: SetStateAction<FeatureContextProps>;
+  children?: React.ReactNode;
+  item?: SetStateAction<FeatureContextProps>;
   category?: string;
+  key?: string;
+  src?: string;
 }
 
 interface CardType extends React.FC<CardProps> {
@@ -53,16 +57,18 @@ interface CardType extends React.FC<CardProps> {
   Image: React.FC<ChildrenProp>;
 }
 
-interface FeatureContextProps {
+export interface itemFeatureProps {
+  genre?: string;
+  slug?: string;
+  maturity?: number;
+  description?: string;
+  title?: string;
+}
+
+export interface FeatureContextProps {
   showFeature: boolean;
   setShowFeature: React.Dispatch<SetStateAction<boolean>>;
-  itemFeature: {
-    genre?: string;
-    slug?: string;
-    maturity?: number;
-    description?: string;
-    title?: string;
-  };
+  itemFeature: itemFeatureProps;
   setItemFeature: React.Dispatch<SetStateAction<FeatureContextProps>>;
 }
 
@@ -113,7 +119,7 @@ Card.Item = function CardItem({ item, children, ...restProps }) {
   return (
     <Item
       onClick={() => {
-        setItemFeature(item);
+        setItemFeature(item!);
         setShowFeature(true);
       }}
       {...restProps}

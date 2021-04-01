@@ -32,7 +32,7 @@ interface PropTypes {
   searchTerm?: string;
   setSearchTerm?: (search: string) => void;
   src?: string;
-  active?: boolean;
+  active?: boolean | string;
   alt?: string;
 }
 

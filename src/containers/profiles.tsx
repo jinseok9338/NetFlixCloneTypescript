@@ -1,17 +1,12 @@
-import React from 'react';
+import { User } from 'firebase';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Header, Profiles } from '../components';
 import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
 interface SelectProfileContainerProps {
   user: firebase.User;
-  setProfile: ({
-    displayName,
-    photoURL,
-  }: {
-    displayName: string;
-    photoURL: string;
-  }) => void;
+  setProfile: Dispatch<SetStateAction<User>>;
 }
 
 export function SelectProfileContainer({
@@ -32,9 +27,9 @@ export function SelectProfileContainer({
           <Profiles.User
             onClick={() =>
               setProfile({
-                displayName: user.displayName as string,
-                photoURL: user.photoURL as string,
-              })
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+              } as SetStateAction<User>)
             }
             data-testid="user-profile"
           >
