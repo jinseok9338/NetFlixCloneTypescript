@@ -24,6 +24,7 @@ interface HeaderProps {
   bg?: boolean;
   src?: string;
   dontShowOnSmallViewPort?: boolean;
+  onClick?: () => void;
 }
 
 interface PropTypes {
@@ -34,6 +35,7 @@ interface PropTypes {
   src?: string;
   active?: boolean | string;
   alt?: string;
+  onClick?: () => void;
 }
 
 interface HeaderType extends React.FC<HeaderProps> {

@@ -15,7 +15,7 @@ export default function useContent(target: string) {
           ...contentObj.data(),
           docId: contentObj.id,
         })) as SetStateAction<never[]>;
-
+        console.log(allContent);
         setContent(allContent);
       })
       .catch((error) => {

@@ -15,7 +15,9 @@ interface JumbotronProps {
 }
 
 interface PropTypes {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  src?: string;
+  alt?: string;
 }
 
 interface JumbotronType extends React.FC<JumbotronProps> {

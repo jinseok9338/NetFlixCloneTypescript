@@ -40,7 +40,7 @@ const Player: PlayerType = ({ children, ...restProps }) => {
 };
 export default Player;
 
-Player.Video = function PlayerVideo({ src, ...restProps }) {
+Player.Video = function PlayerVideo({ src }) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
 
   return showPlayer
@@ -59,7 +59,7 @@ Player.Video = function PlayerVideo({ src, ...restProps }) {
 };
 
 Player.Button = function PlayerButton({ ...restProps }) {
-  const { showPlayer, setShowPlayer } = useContext(PlayerContext);
+  const { setShowPlayer } = useContext(PlayerContext);
 
   return (
     <Button
