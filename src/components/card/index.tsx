@@ -24,17 +24,17 @@ import {
 } from './styles/card';
 
 interface CardProps {
-  children: React.ReactNode;
-  category: string;
-  item: {
+  children?: React.ReactNode | Element[];
+  category?: string;
+  item?: {
     children: Element[] | React.ReactNode;
     genre: string;
     slug: string;
     maturity: number;
     description: string;
     title: string;
-    key?: string;
   };
+  key?: string;
 }
 
 interface ChildrenProp {
@@ -63,6 +63,7 @@ export interface itemFeatureProps {
   maturity?: number;
   description?: string;
   title?: string;
+  docId?: string;
 }
 
 export interface FeatureContextProps {
