@@ -7,3 +7,8 @@ I used compound components (just a design pattern) to build my components, and t
 Subscribe to my YouTube channel here: http://bit.ly/CognitiveSurge where I build projects like this! And don't forget, you can contribute to this project (highly encouraged!).
 
 ![Preview](netflix-preview.png?raw=true)
+
+The original Project Description is above.  
+I am porting this project with typescript. Please add Firebase Config to src/lib.firebase.prod.ts
+You need to add Movie and Series data to Firestore for it to properly function.
+The data type is in DataType.json

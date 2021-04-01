@@ -1,13 +1,44 @@
 import React from 'react';
-import { Container, Item, Inner, Pane, Title, SubTitle, Image } from './styles/jumbotron';
+import {
+  Container,
+  Item,
+  Inner,
+  Pane,
+  Title,
+  SubTitle,
+  Image,
+} from './styles/jumbotron';
 
-export default function Jumbotron({ children, direction = 'row', ...restProps }) {
+interface JumbotronProps {
+  children: React.ReactNode;
+  direction: string;
+}
+
+interface PropTypes {
+  children: React.ReactNode;
+}
+
+interface JumbotronType extends React.FC<JumbotronProps> {
+  Container: React.FC<PropTypes>;
+  Pane: React.FC<PropTypes>;
+  SubTitle: React.FC<PropTypes>;
+  Title: React.FC<PropTypes>;
+  Image: React.FC<PropTypes>;
+}
+
+const Jumbotron: JumbotronType = ({
+  children,
+  direction = 'row',
+  ...restProps
+}) => {
   return (
     <Item {...restProps}>
       <Inner direction={direction}>{children}</Inner>
     </Item>
   );
-}
+};
+
+export default Jumbotron;
 
 Jumbotron.Container = function JumbotronContainer({ children, ...restProps }) {
   return <Container {...restProps}>{children}</Container>;

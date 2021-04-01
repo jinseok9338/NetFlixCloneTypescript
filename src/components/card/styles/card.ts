@@ -25,9 +25,16 @@ export const Container = styled.div`
   }
 `;
 
-export const Group = styled.div`
+interface GroupProps {
+  flexDirection?: string;
+  alignItems?: string;
+  margin?: string | number;
+}
+
+export const Group = styled.div<GroupProps>`
   display: flex;
-  flex-direction: ${({ flexDirection }) => (flexDirection === 'row' ? 'row' : 'column')};
+  flex-direction: ${({ flexDirection }) =>
+    flexDirection === 'row' ? 'row' : 'column'};
   ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
   ${({ margin }) => margin && `margin: ${margin}`};
 
@@ -118,10 +125,15 @@ export const Item = styled.div`
   }
 `;
 
-export const FeatureText = styled.p`
+interface FeatureTextProps {
+  fontWeight?: string | number;
+}
+
+export const FeatureText = styled.p<FeatureTextProps>`
   font-size: 18px;
   color: white;
-  font-weight: ${({ fontWeight }) => (fontWeight === 'bold' ? 'bold' : 'normal')};
+  font-weight: ${({ fontWeight }) =>
+    fontWeight === 'bold' ? 'bold' : 'normal'};
   margin: 0;
 
   @media (max-width: 600px) {
@@ -129,7 +141,11 @@ export const FeatureText = styled.p`
   }
 `;
 
-export const Feature = styled.div`
+interface FeatureProps {
+  src: string;
+}
+
+export const Feature = styled.div<FeatureProps>`
   display: flex;
   flex-direction: row;
   background: url(${({ src }) => src});
@@ -185,7 +201,11 @@ export const Content = styled.div`
   }
 `;
 
-export const Maturity = styled.div`
+interface MaturityProps {
+  rating: number;
+}
+
+export const Maturity = styled.div<MaturityProps>`
   background-color: ${({ rating }) => (rating >= 15 ? '#f44336' : '#2f9600')};
   border-radius: 15px;
   width: 28px;

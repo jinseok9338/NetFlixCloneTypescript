@@ -1,14 +1,28 @@
 import styled from 'styled-components/macro';
 import { Link as ReachRouterLink } from 'react-router-dom';
 
-export const Background = styled.div`
+interface BackgroundProps {
+  dontShowOnSmallViewPort: boolean;
+  src: string;
+  'data-testid'?: string;
+}
+
+export const Background = styled.div<BackgroundProps>`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.35)), url(${({ src }) => (src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg')}) top left / cover
-    no-repeat;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.35),
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.35)
+    ),
+    url(${({ src }) =>
+        src ? `../images/misc/${src}.jpg` : '../images/misc/home-bg.jpg'})
+      top left / cover no-repeat;
 
   @media (max-width: 1100px) {
-    ${({ dontShowOnSmallViewPort }) => dontShowOnSmallViewPort && `background: none;`}
+    ${({ dontShowOnSmallViewPort }) =>
+      dontShowOnSmallViewPort && `background: none;`}
   }
 `;
 
@@ -28,7 +42,11 @@ export const Container = styled.div`
   }
 `;
 
-export const Link = styled.p`
+interface LinkProps {
+  active: string | boolean;
+}
+
+export const Link = styled.p<LinkProps>`
   color: #fff;
   text-decoration: none;
   margin-right: 30px;
@@ -49,7 +67,7 @@ export const Group = styled.div`
   align-items: center;
 `;
 
-export const SearchInput = styled.input`
+export const SearchInput = styled.input<LinkProps>`
   background-color: rgba(64, 64, 64, 0.5);
   color: white;
   border: 1px solid white;
@@ -117,7 +135,11 @@ export const ButtonLink = styled(ReachRouterLink)`
   }
 `;
 
-export const Picture = styled.button`
+interface PictureProps {
+  src: string;
+}
+
+export const Picture = styled.button<PictureProps>`
   background: url(${({ src }) => src});
   background-size: contain;
   border: 0;

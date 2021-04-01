@@ -1,9 +1,35 @@
 import React from 'react';
-import { Container, Row, Column, Link, Title, Text, Break } from './styles/footer';
+import {
+  Container,
+  Row,
+  Column,
+  Link,
+  Title,
+  Text,
+  Break,
+} from './styles/footer';
 
-export default function Footer({ children, ...restProps }) {
-  return <Container {...restProps}>{children}</Container>;
+interface FooterProps {
+  children: React.ReactNode;
 }
+
+interface PropTypes {
+  children: React.ReactNode;
+}
+
+interface FooterType extends React.FC<FooterProps> {
+  Row: React.FC<PropTypes>;
+  Column: React.FC<PropTypes>;
+  Link: React.FC<PropTypes>;
+  Title: React.FC<PropTypes>;
+  Text: React.FC<PropTypes>;
+  Break: React.FC<PropTypes>;
+}
+
+const Footer: FooterType = ({ children, ...restProps }) => {
+  return <Container {...restProps}>{children}</Container>;
+};
+export default Footer;
 
 Footer.Row = function FooterRow({ children, ...restProps }) {
   return <Row {...restProps}>{children}</Row>;

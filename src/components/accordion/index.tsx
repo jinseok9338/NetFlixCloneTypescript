@@ -20,12 +20,16 @@ interface AccordionProps {
   children: React.ReactNode;
 }
 
+interface PropTypes {
+  children: React.ReactNode;
+}
+
 interface AccordionType extends React.FC<AccordionProps> {
-  Title: React.FC;
-  Frame: React.FC;
-  Item: React.FC;
-  Header: React.FC;
-  Body: React.FC;
+  Title: React.FC<PropTypes>;
+  Frame: React.FC<PropTypes>;
+  Item: React.FC<PropTypes>;
+  Header: React.FC<PropTypes>;
+  Body: React.FC<PropTypes>;
 }
 
 const Accordion: AccordionType = ({ children, ...restProps }) => {
