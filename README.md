@@ -11,4 +11,8 @@ Subscribe to my YouTube channel here: http://bit.ly/CognitiveSurge where I build
 The original Project Description is above.  
 I am porting this project with typescript. Please add Firebase Config to src/lib.firebase.prod.ts
 You need to add Movie and Series data to Firestore for it to properly function.
-The data type is in DataType.json
+
+I have written components and pages and functions in Typescript but I have problem with route.js in helper folder. I made a workaround allowing javascript in tsconfig.json. 
+
+I have not changed the test yet, maybe later in the future.
+If you want to jump in and made suggestion or change the code by all means do it so :) Happy Coding 
