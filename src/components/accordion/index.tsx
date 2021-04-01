@@ -1,15 +1,41 @@
 import React, { useState, useContext, createContext } from 'react';
-import { Container, Frame, Title, Item, Inner, Header, Body } from './styles/accordion';
+import {
+  Container,
+  Frame,
+  Title,
+  Item,
+  Inner,
+  Header,
+  Body,
+} from './styles/accordion';
 
-const ToggleContext = createContext();
+interface ToggleContextProps {
+  toggleShow: boolean;
+  setToggleShow: (props: boolean) => void;
+}
 
-export default function Accordion({ children, ...restProps }) {
+const ToggleContext = createContext({} as ToggleContextProps);
+
+interface AccordionProps {
+  children: React.ReactNode;
+}
+
+interface AccordionType extends React.FC<AccordionProps> {
+  Title: React.FC;
+  Frame: React.FC;
+  Item: React.FC;
+  Header: React.FC;
+  Body: React.FC;
+}
+
+const Accordion: AccordionType = ({ children, ...restProps }) => {
   return (
     <Container {...restProps}>
       <Inner>{children}</Inner>
     </Container>
   );
-}
+};
+export default Accordion;
 
 Accordion.Title = function AccordionTitle({ children, ...restProps }) {
   return <Title {...restProps}>{children}</Title>;
