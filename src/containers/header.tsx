@@ -4,7 +4,7 @@ import * as ROUTES from '../constants/routes';
 import logo from '../logo.svg';
 
 interface HeaderContainerProps {
-  children: any;
+  children: React.ReactNode;
 }
 
 export function HeaderContainer({ children }: HeaderContainerProps) {

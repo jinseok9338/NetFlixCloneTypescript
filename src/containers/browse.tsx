@@ -51,7 +51,7 @@ export function BrowseContainer({ slides }: slideProps) {
   }, [profile.displayName]);
 
   useEffect(() => {
-    //@ts-ignore
+    
     setSlideRows(slides[category]);
   }, [slides, category]);
 
@@ -67,7 +67,7 @@ export function BrowseContainer({ slides }: slideProps) {
     if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
       setSlideRows(results);
     } else {
-      //@ts-ignore
+  
       setSlideRows(slides[category]);
     }
   }, [searchTerm]);
