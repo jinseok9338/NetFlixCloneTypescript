@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 export function IsUserRedirect({ user, loggedInPath, children, ...rest }) {
   return (
+    // eslint-disable-next-line react/jsx-filename-extension
     <Route
       {...rest}
       render={() => {
